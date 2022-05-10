@@ -76,7 +76,7 @@ export function WidgetForm() {
         </>
       )}
         
-      <footer className="text-xs text-neutral-400">
+      <footer className="text-xs dark:text-neutral-400 text-footerLightTheme-300">
         Feito com ♥ pela <a className="underline-offset-2" href="http://rocketseat.com.br">Rocketseat</a>
       </footer>
     </div>
