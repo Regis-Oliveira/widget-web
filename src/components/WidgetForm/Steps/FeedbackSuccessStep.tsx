@@ -22,7 +22,7 @@ export function FeedbackSuccessStep({ onFeedbackRestartRequested }: FeedbackSucc
         <button
           type="button"
           onClick={onFeedbackRestartRequested}
-          className="py-2 px-6 mt-6 dark:bg-zinc-800 bg-backgroundLightTheme-100 rounded-md border-transparent text-sm dark:text-zinc-100 text-lightTheme-600 leading-6 hover:bg-zinc-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500 disabled:opacity-50 disabled:hover:bg-brand-500"
+          className="py-2 px-6 mt-6 dark:bg-zinc-800 bg-backgroundLightTheme-100 rounded-md border-transparent text-sm dark:text-zinc-100 text-lightTheme-600 leading-6 dark: hover:bg-zinc-200 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500 disabled:opacity-50 disabled:hover:bg-brand-500"
         >
           Quero enviar outro
         </button>
