@@ -4,7 +4,7 @@ import { ArrowLeft } from "phosphor-react";
 import { FeedbackType, feedbackTypes } from ".."
 import { CloseButton } from "../../CloseButton"
 import { ScreenshotButton } from "../ScreenshotButton";
-import { api } from "../../../lib/api";
+import { api, notionApi } from "../../../lib/api";
 import { Loading } from "../../Loading";
 
 interface FeedbackContentStepProps {
@@ -21,6 +21,7 @@ export function FeedbackContentStep({
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [comment, setComment] = useState('');
   const [isSendingFeedback, setIsSendingFeedback] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const feedbackTypeInfo = feedbackTypes[feedbackType];
 
@@ -34,12 +35,16 @@ export function FeedbackContentStep({
         comment,
         screenshot
       })
+      
+      onFeedbackSent();
     } catch (error) {
-      console.log("error::", error);
-      setIsSendingFeedback(false);
+      if (error instanceof Error) {
+        //@ts-ignore
+        setApiError(error.response.data.message);
+      }
+    } finally {
+      setIsSendingFeedback(false);      
     }
-
-    onFeedbackSent();
   }
 
   return (
@@ -82,6 +87,12 @@ export function FeedbackContentStep({
             {isSendingFeedback ? <Loading /> : 'Enviar feedback'}
           </button>
         </footer>
+
+        {apiError && (
+          <div className="m-2 mb-0 flex-1 border-red-700 bg-red-100 rounded-md flex items-center justify-center">
+            <p className="text-rose-500 text-sm p-1">Erro: { apiError }</p>
+          </div>
+        )}
       </form>
     </>
   )
